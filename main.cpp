@@ -18,6 +18,7 @@ int main(int argc, char** argv)
 			std::cerr << "Couldn't get surface from window: " << SDL_GetError() << std::endl;
 		}
 		bool quit = false;
+		Uint32 colour = SDL_MapRGB(surface->format, 0, 0, 0);
 		while (!quit)
 		{
 			SDL_Event event;
@@ -34,6 +35,10 @@ int main(int argc, char** argv)
 					SDL_FillRect(surface, nullptr, SDL_MapRGB(surface->format, 0, 255, 0));
 					SDL_UpdateWindowSurface(window);
 					break;
+				case SDLK_p:
+					SDL_FillRect(surface, nullptr, SDL_MapRGB(surface->format, 255, 0, 255));
+					SDL_UpdateWindowSurface(window);
+					break;
 				case SDLK_r:
 					SDL_FillRect(surface, nullptr, SDL_MapRGB(surface->format, 255, 0, 0));
 					SDL_UpdateWindowSurface(window);
@@ -42,6 +47,8 @@ int main(int argc, char** argv)
 					SDL_FillRect(surface, nullptr, SDL_MapRGB(surface->format, 0, 0, 255));
 					SDL_UpdateWindowSurface(window);
 					break;
+				case SDLK_c:
+					colour = SDL_MapRGB(surface->format, 0, 0, 255);
 				}
 			case SDL_MOUSEMOTION:
 				if ((SDL_GetMouseState(nullptr, nullptr) & SDL_BUTTON(1)) != 0) {
@@ -50,7 +57,7 @@ int main(int argc, char** argv)
 					rectangle.y = event.motion.y;
 					rectangle.w = 10;
 					rectangle.h = 10;
-					SDL_FillRect(surface, &rectangle, SDL_MapRGB(surface->format, 0, 0, 0));
+					SDL_FillRect(surface, &rectangle, colour);
 					SDL_UpdateWindowSurface(window);
 				}
 				break;
