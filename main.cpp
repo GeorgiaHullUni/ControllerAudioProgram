@@ -159,8 +159,21 @@ int main(int argc, char** argv)
 
 							ImGui::ShowDemoWindow();
 
-							ImGui::ColorEdit4("MyColor##3", (float*)&colour, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_NoLabel);
+							if (ImGui::Begin("Menu"))
+							{
+								ImGui::ColorEdit4("MyColor##3", (float*)&colour, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_NoLabel);
 
+								static float controllerColour[4];
+								if (ImGui::ColorEdit4("controllerColour", controllerColour))
+								{
+									SDL_GameControllerSetLED(controller, controllerColour[0] * 255, controllerColour[1] * 255, controllerColour[2] * 255);
+								}
+
+
+
+							}
+							ImGui::End();
+							
 							ImGui::Render();
 
 							SDL_SetRenderTarget(renderer, nullptr);
