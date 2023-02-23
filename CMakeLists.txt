@@ -21,6 +21,8 @@ add_executable(ControllerAudioProgram WIN32
 	"ImGui/imstb_truetype.h"
 )
 
+set_property(DIRECTORY . PROPERTY VS_STARTUP_PROJECT ControllerAudioProgram)
+
 add_subdirectory("SDL" EXCLUDE_FROM_ALL)
 
 target_link_libraries(ControllerAudioProgram SDL2::SDL2main SDL2::SDL2-static)
