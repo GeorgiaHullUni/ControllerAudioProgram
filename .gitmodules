@@ -1,3 +1,6 @@
 [submodule "SDL"]
 	path = SDL
 	url = https://github.com/libsdl-org/SDL
+[submodule "clownaudio"]
+	path = clownaudio
+	url = https://github.com/Clownacy/clownaudio.git
